@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Songs</h1>
+    {% if user.is_authenticated %}
+        <!-- Display a list of songs here -->
+        <ul>
+            {% for song in songs %}
+                <li>{{ song.title }} by {{ song.artist }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Add a button or link to submit a song -->
+        <a href="{% url 'band:submit_song' %}" class="btn btn-primary">Submit a Song</a>
+    {% else %}
+        <div class="alert alert-info">
+            <p>You do not have an account. Please create an account to access the songs.</p>
+            <a class="btn btn-primary" href="{% url 'band:register' %}">Create Account</a>
+        </div>
+    {% endif %}
+{% endblock %}
